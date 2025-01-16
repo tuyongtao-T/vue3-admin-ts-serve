@@ -8,6 +8,8 @@ const cors = require('cors');
 
 const app = express();
 
+app.use(express.json()); // 解析 JSON 格式的请求体
+app.use(express.urlencoded({ extended: true })); // 解析 URL 编码的请求体
 app.use(cors());
 const port = 6868;
 
@@ -23,12 +25,14 @@ const sslOptions = {
 
 // 引入路由模块
 const dashboardRoutes = require('./routes/dashboard');
+const userManageRoutes = require('./routes/userManage');
 
 
 
 
 // 使用路由模块
 app.use('/dashboard', dashboardRoutes);
+app.use('/userManage', userManageRoutes);
 
 
 
